@@ -21,8 +21,10 @@ class Router {
 
         if(\strlen($url) > 1)
         {
-            return rtrim($url, '/');
+            $url = rtrim($url, '/');
         }
+
+        return $url;
     }
 
     public function run()

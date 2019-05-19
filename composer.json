@@ -6,7 +6,9 @@
             "email": "gabriel.souza2@hotmail.com.br"
         }
     ],
-    "require": {},
+    "require": {
+        "pimple/pimple": "^3.2"
+    },
     "autoload": {
         "psr-4": {
             "SON\\Framework\\": "src",

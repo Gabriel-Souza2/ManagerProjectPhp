@@ -6,17 +6,8 @@ use SON\Framework\Router;
 
 $router = new Router();
 
-$router->add('GET', '/', function(){
-    return "Homepage";
-});
-
-$router->add('GET','/projetos/(\d+)', function($params){
-    return "projetos :" . $params[1];
-});
-
-$router->add('GET', '/projetos', function(){
-    return "projetos";
-});
+require __DIR__.'/config/containers.php';
+require __DIR__.'/config/routes.php';
 
 try
 {
