@@ -1,6 +1,5 @@
 <?php
 
-use PDO;
 use Pimple\Container;
 
 $container = new Container();

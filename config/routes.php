@@ -1,12 +1,14 @@
 <?php
 
+use App\Models\Users;
+
+
 $router->add('GET', '/', function() use ($container){
+
     return "Homepage";
 });
 
-$router->add('GET','/projetos/(\d+)', function($params) use ($container){
-    return "projetos :" . $params[1];
-});
+$router->add('GET','/users/(\d+)', "App\Controllers\UserController::show");
 
 $router->add('GET', '/projetos', function(){
     return "projetos";
