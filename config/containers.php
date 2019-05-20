@@ -1,9 +1,12 @@
 <?php
 
 use Pimple\Container;
+use Zend\EventManager\EventManager;
 
 $container = new Container();
-
+$container['events'] = function(){
+    return new EventManager();
+};
 $container['db'] = function() {
     $dsn = 'mysql:host=localhost;dbname=pp_project_manager';
     $username = 'root';
