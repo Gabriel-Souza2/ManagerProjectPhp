@@ -5,28 +5,38 @@ namespace SON\Framework;
 use Pimple\Container;
 use SON\Framework\Router;
 use SON\Framework\Response;
+use SON\Framework\Modules\ModuleRegistry;
 use SON\Framework\Exceptions\HttpException;
 
 class App
 {
     private $container;
+    private $composer;
     private $middlewares = [
         'before' => [],
         'after' => []
     ];
 
-    public function __construct($container = null)
+    public function __construct($composer, array $modules, $container = null)
     {
         $this->container = $container;
+        $this->composer = $composer;
         if($this->container === null)
         {
-            $this->container = new Pimple;
+            $this->container = new Container;
         }
+
+        $this->loadRegistry($modules);
     }
 
     public function middleware($on, $callback)
     {
         $this->middlewares[$on][] = $callback;
+    }
+
+    public function getContainer()
+    {
+        return $this->container;
     }
 
     public function getRouter()
@@ -99,5 +109,21 @@ class App
             echo $this->getHttpErrorHandler();
         }
 
+    }
+
+    private function loadRegistry($modules)
+    {
+        $registry = new ModuleRegistry;
+
+        $registry->setApp($this);
+        $registry->setComposer($this->composer);
+
+        foreach($modules as $file => $module)
+        {
+            require $file;
+            $registry->add(new $module);
+        }
+
+        $registry->run();
     }
 }

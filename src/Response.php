@@ -27,7 +27,9 @@ class Response
 
         $response = call_user_func_array($action, $params);
 
-        if(\is_array($response)) echo json_encode($response);
+        if(\is_array($response)) $response = json_encode($response);
+
+        echo $response;
        
     }
 }

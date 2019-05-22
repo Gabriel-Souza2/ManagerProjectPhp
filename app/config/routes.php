@@ -3,10 +3,7 @@
 use App\Models\Users;
 
 
-$router->add('GET', '/', function() use ($container){
-
-    return "Homepage";
-});
+$router->add('GET', '/', 'App\Controllers\UserController::index');
 
 $router->add('GET','/users/(\d+)', "App\Controllers\UserController::show");
 
