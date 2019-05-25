@@ -24,3 +24,7 @@ $container['db'] = function() {
         echo $e->getMessage();
     }
 };
+
+$container['users_model'] = function($c){
+    return new \App\Models\Users($c);
+};
