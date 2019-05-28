@@ -1,7 +1,10 @@
 <template>
-    <div>
-        <h1>Hello World</h1>
-        <p> Projeto pratico</p>
-    </div>
+    <v-layout row wrap>
+        <v-flex xs12> 
+            <h1 class="display-1 mb-4">Projetos</h1>
+        </v-flex>
+        <v-container grid-list-md>
+            <router-view/>
+        </v-container>
+    </v-layout>
 </template>
->

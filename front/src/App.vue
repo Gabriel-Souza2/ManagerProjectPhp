@@ -1,23 +1,24 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+  <v-app>
+    <p-header/>
+    <v-content>
+      <v-container grid-list-md>
+        <router-view/>
+      </v-container>
+    </v-content>
+    <v-footer app>
+      <span>&copy; <a href="https://github.com/Gabriel-Souza2">Meu github</a> </span>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
+import Header from './partials/Header';
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'p-header': Header 
+  }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
