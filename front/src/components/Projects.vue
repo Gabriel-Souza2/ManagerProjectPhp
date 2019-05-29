@@ -8,3 +8,11 @@
         </v-container>
     </v-layout>
 </template>
+
+<script>
+export default {
+    mounted() {
+        this.$store.dispatch('projects/getAll');
+    }
+}
+</script>

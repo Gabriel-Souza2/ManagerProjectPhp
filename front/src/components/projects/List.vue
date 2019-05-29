@@ -1,13 +1,13 @@
 <template>
     <v-layout row wrap>
-        <v-flex xs3 v-for="n in 7" :key="n">
+        <v-flex xs3 v-for="project in projects" :key="project.id">
             <v-card color="light-blue darken-1" class="white--text">
             <v-card-title primary-title>
-                <div class="headline">App SON Mobile</div>
+                <div class="headline">{{project.title}}</div>
             </v-card-title>
-            <v-card-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</v-card-text>
+            <v-card-text>{{ project.description }}</v-card-text>
             <v-card-actions>
-                <v-btn flat dark :to="'/projects/' + n">Ver +</v-btn>
+                <v-btn flat dark :to="'/projects/' + project.id">Ver +</v-btn>
             </v-card-actions>
             </v-card>
         </v-flex>
@@ -21,8 +21,16 @@
 <script>
 import ProjetoCreate from './Create';
 export default {
+    computed: {
+        projects() {
+            return this.$store.state.projects.all;
+        }
+    },
     components: {
         'projects-create': ProjetoCreate
+    },
+    mounted() {
+        this.$store.dispatch('projects/getAll');
     }
 }
 </script>
