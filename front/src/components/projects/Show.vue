@@ -6,7 +6,7 @@
         </v-flex>
         <sections/>
         <v-flex xs12>
-            <v-btn flat>Voltar</v-btn>
+            <v-btn flat to="/projects">Voltar</v-btn>
         </v-flex>
 
         <show-task/>

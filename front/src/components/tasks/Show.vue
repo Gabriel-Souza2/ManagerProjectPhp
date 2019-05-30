@@ -5,10 +5,12 @@
                 <v-btn icon dark @click.native="dialog = false">
                     <v-icon>close</v-icon>
                 </v-btn>
-                <v-toolbar-title>Tarefa {{ n }}</v-toolbar-title>
+                <v-toolbar-title>{{ task.title }}</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
-                <h3>Hello World</h3>
+                <p v-if="task.description">{{ task.description }}</p>
+                <p v-if="task.due_date">{{ task.due_date }}</p>
+                <p>{{ task.done == 1 ? 'tarefa finalizada' : 'tarefa pendente' }}</p>
             </v-card-text>
         </v-card>
     </v-dialog>
@@ -19,13 +21,13 @@ export default {
     data(){
         return {
             dialog: false,
-            n: 0
+            task: {} 
         }
     },
     created() {
-        eventHub.$on('open-task', (n) => {
+        eventHub.$on('open-task', (task) => {
             this.dialog = true;
-            this.n = n;
+            this.task = task;
         });
     }
 }

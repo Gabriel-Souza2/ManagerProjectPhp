@@ -37,11 +37,16 @@ abstract class Model
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function all()
+    public function all(array $conditions = [])
     {
-        $query = $this->queryBuilder->select($this->table)->getData();
+        $query = $this->queryBuilder->select($this->table);
+        if($conditions)
+        {
+            $query = $query->where($conditions);
+        }
+        $query = $query->getData();
         $stmt = $this->db->prepare($query->sql);
-        $stmt->execute();
+        $stmt->execute($query->bind);
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }

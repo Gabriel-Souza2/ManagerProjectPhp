@@ -2,11 +2,11 @@
     <v-list three-line subheader>
         <v-subheader>Tarefas</v-subheader>
         <v-divider></v-divider>
-        <div v-for="n in 3" :key="n">
-            <v-list-tile @click="open(n)">
+        <div v-for="task in tasks" :key="task.id">
+            <v-list-tile @click="open(task)">
                 <v-list-tile-content>
-                    <v-list-tile-title>Titulo</v-list-tile-title>
-                    <v-list-tile-sub-title>SubTitulo</v-list-tile-sub-title>
+                    <v-list-tile-title>{{ task.title }}</v-list-tile-title>
+                    <v-list-tile-sub-title>{{ tasks.description }}</v-list-tile-sub-title>
                 </v-list-tile-content>
             </v-list-tile>
 
@@ -16,12 +16,26 @@
 </template>
 <script>
 import { eventHub } from '../../eventHub';
+import _ from 'underscore';
 
 export default {
-    methods:{
-        open(n) {
-            eventHub.$emit('open-task', n);
+    props: ['section'],
+        computed: {
+        tasks(){
+            const tasks = _.filter(this.$store.state.tasks.all, (data) => {
+                return data.section_id == this.section
+            });
+
+            return tasks;
         }
+    },
+    methods:{
+        open(task) {
+            eventHub.$emit('open-task', task);
+        }
+    },
+    mounted(){
+        this.$store.dispatch('tasks/getAll', this.$route.params.id);
     }
 }
 </script>
