@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@babel/parser": "^7.4.5",
     "axios": "^0.18.0",
     "material-design-icons-iconfont": "^5.0.1",
     "underscore": "^1.9.1",

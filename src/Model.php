@@ -55,6 +55,7 @@ abstract class Model
     {
         $this->events->trigger("creating.$this->table", null, $data);
 
+        $data = $this->setData($data);
         
         $sql = $this->queryBuilder->insert($this->table, $data)->getData();
         
@@ -98,5 +99,22 @@ abstract class Model
 
         return $result;
 
+    }
+
+    protected function setData($data) 
+    {
+        foreach($data as $field => $value)
+        {
+            $method = str_replace('_', '', $field);
+            $method = ucwords($method);
+            $method = str_replace(' ', '', $field);
+            $method = "set{$method}";
+            if(method_exists($this, $method))
+            {
+                $data[$field] = $this->$method($value);
+            }
+        }
+
+        return $data;
     }
 }

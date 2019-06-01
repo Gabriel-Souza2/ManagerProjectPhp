@@ -42,3 +42,4 @@ $container['users_model'] = function($c){
     return new \App\Models\Users($c);
 };
 
+$container['key_token'] = 'Secret key';

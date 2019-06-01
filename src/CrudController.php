@@ -1,7 +1,6 @@
 <?php
 
 namespace SON\Framework;
-
 abstract class CrudController
 {
     protected abstract function getModel(): string;
