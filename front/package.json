@@ -13,7 +13,7 @@
     "@babel/parser": "^7.4.5",
     "axios": "^0.18.0",
     "material-design-icons-iconfont": "^5.0.1",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuetify": "^1.5.14",
